@@ -13,7 +13,7 @@ OT_economyVersion = 13;
 OT_NATOversion = 10;
 OT_CRIMversion = 1;
 
-OT_faction_NATO = "BLU_T_F";
+OT_faction_NATO = "rhs_faction_usarmy_wd";
 OT_spawnFaction = "IND_F"; //This faction will have a rep in spawn town
 
 OT_flag_NATO = "Flag_NATO_F";
@@ -85,78 +85,78 @@ OT_hat_police = "H_Cap_police";
 OT_clothes_mob = "U_I_C_Soldier_Camo_F";
 
 //NATO stuff
-OT_NATO_HMG = "B_HMG_01_high_F";
+OT_NATO_HMG = "RHS_M2StaticMG_WD";
 OT_NATO_Vehicles_AirGarrison = [
 	["B_T_VTOL_01_vehicle_F",1],
 	["B_T_VTOL_01_infantry_F",1],
-	["B_Heli_Light_01_armed_F",1],
-	["B_Heli_Transport_03_unarmed_F",2],
-	["B_Heli_Light_01_F",3],
-	["B_Heli_Attack_01_F",1],
-	["B_Heli_Transport_01_F",2]
+	["RHS_MELB_AH6M",1],
+	["RHS_UH60M2",2],
+	["RHS_MELB_MH6M",3],
+	["RHS_AH64D_wd",1],
+	["RHS_UH60M",2]
 ];
 
 OT_NATO_Vehicles_StaticAAGarrison = [
-	"B_T_static_AA_F",
-	"B_T_static_AA_F"
+	"RHS_Stinger_AA_pod_WD",
+	"RHS_Stinger_AA_pod_WD"
 ]; //Added to every airfield
 
 OT_NATO_Vehicles_JetGarrison = [
-	["B_Plane_CAS_01_F",1]
+	["RHS_A10",1]
 ];
 
 if(OT_hasJetsDLC) then {
-	OT_NATO_Vehicles_JetGarrison pushback ["B_Plane_Fighter_01_F",1];
-	OT_NATO_Vehicles_JetGarrison pushback ["B_Plane_Fighter_01_Stealth_F",1];
+	OT_NATO_Vehicles_JetGarrison pushback ["rhsusf_f22",1];
+	OT_NATO_Vehicles_JetGarrison pushback ["rhsusf_f22",1];
 	OT_NATO_Vehicles_StaticAAGarrison pushback "B_Radar_System_01_F";
 	OT_NATO_Vehicles_StaticAAGarrison pushback "B_SAM_System_03_F";
 };
 
-OT_NATO_StaticGarrison_LevelOne = ["B_HMG_01_high_F"];
-OT_NATO_StaticGarrison_LevelTwo = ["B_HMG_01_high_F","B_HMG_01_high_F","B_GMG_01_high_F","B_T_MRAP_01_hmg_F"];
-OT_NATO_StaticGarrison_LevelThree = ["B_T_Static_AT_F","B_T_Static_AA_F","B_HMG_01_high_F","B_HMG_01_high_F","B_GMG_01_high_F","B_T_MRAP_01_hmg_F","B_T_MRAP_01_gmg_F"];
+OT_NATO_StaticGarrison_LevelOne = ["RHS_M2StaticMG_WD"];
+OT_NATO_StaticGarrison_LevelTwo = ["RHS_M2StaticMG_WD","RHS_M2StaticMG_WD","RHS_MK19_TriPod_WD","rhsusf_m1043_w_m2"];
+OT_NATO_StaticGarrison_LevelThree = ["RHS_Stinger_AA_pod_WD","RHS_Stinger_AA_pod_WD","RHS_M2StaticMG_WD","RHS_M2StaticMG_WD","RHS_MK19_TriPod_WD","rhsusf_M1238A1_M2_socom_d","rhsusf_M1238A1_Mk19_socom_d"];
 
 OT_NATO_CommTowers = ["Land_TTowerBig_1_F","Land_TTowerBig_2_F"];
 
-OT_NATO_Unit_Sniper = "B_T_Sniper_F";
-OT_NATO_Unit_Spotter = "B_T_Spotter_F";
-OT_NATO_Unit_AA_spec = "B_T_Soldier_AA_F";
-OT_NATO_Unit_AA_ass = "B_T_Soldier_AAA_F";
-OT_NATO_Unit_HVT = "B_T_Officer_F";
-OT_NATO_Unit_TeamLeader = "B_T_Soldier_TL_F";
-OT_NATO_Unit_SquadLeader = "B_T_Soldier_SL_F";
+OT_NATO_Unit_Sniper = "rhsusf_army_ucp_sniper";
+OT_NATO_Unit_Spotter = "rhsusf_army_ucp_jfo";
+OT_NATO_Unit_AA_spec = "rhsusf_army_ucp_aa";
+OT_NATO_Unit_AA_ass = "rhsusf_army_ucp_riflemanl";
+OT_NATO_Unit_HVT = "rhsusf_army_ucp_driver";
+OT_NATO_Unit_TeamLeader = "rhsusf_army_ucp_teamleader";
+OT_NATO_Unit_SquadLeader = "rhsusf_army_ucp_squadleader";
 
 OT_NATO_Unit_PoliceCommander = "B_Gen_Commander_F";
 OT_NATO_Unit_Police = "B_Gen_Soldier_F";
-OT_NATO_Vehicle_PoliceHeli = "B_Heli_Light_01_F";
+OT_NATO_Vehicle_PoliceHeli = "RHS_MELB_MH6M";
 OT_NATO_Vehicle_Quad = "B_Quadbike_01_F";
 OT_NATO_Vehicle_Police = "B_GEN_Offroad_01_gen_F";
 OT_NATO_Vehicle_Transport = ["B_T_Truck_01_transport_F","B_T_Truck_01_covered_F"];
-OT_NATO_Vehicle_Transport_Light = "B_T_LSV_01_unarmed_F";
-OT_NATO_Vehicles_PoliceSupport = ["B_T_MRAP_01_hmg_F","B_T_MRAP_01_gmg_F","B_T_LSV_01_armed_F","B_Heli_Light_01_armed_F"];
+OT_NATO_Vehicle_Transport_Light = "rhsusf_m998_w_4dr";
+OT_NATO_Vehicles_PoliceSupport = ["rhsusf_m1025_w_m2","rhsusf_m1025_w_mk19","RHS_MELB_AH6M"];
 OT_NATO_Vehicles_ReconDrone = "B_UAV_01_F";
 OT_NATO_Vehicles_CASDrone = "B_UAV_02_CAS_F";
-OT_NATO_Vehicles_AirSupport = ["B_Heli_Attack_01_F"];
-OT_NATO_Vehicles_AirSupport_Small = ["B_Heli_Light_01_armed_F"];
-OT_NATO_Vehicles_GroundSupport = ["B_T_MRAP_01_gmg_F","B_T_MRAP_01_hmg_F","B_T_LSV_01_armed_F"];
-OT_NATO_Vehicles_TankSupport = ["B_T_MBT_01_TUSK_F","B_T_MBT_01_cannon_F"];
-OT_NATO_Vehicles_Convoy = ["B_T_UGV_01_rcws_olive_F","B_T_MRAP_01_hmg_F","B_T_LSV_01_armed_F","B_T_LSV_01_armed_F","B_T_LSV_01_armed_F"];
-OT_NATO_Vehicles_AirWingedSupport = ["B_Plane_CAS_01_F"];
-OT_NATO_Vehicle_AirTransport_Small = "B_Heli_Transport_01_camo_F";
-OT_NATO_Vehicle_AirTransport = ["B_Heli_Transport_03_F","B_Heli_Transport_01_F","B_Heli_Transport_01_F"];
-OT_NATO_Vehicle_AirTransport_Large = "B_Heli_Transport_03_F";
+OT_NATO_Vehicles_AirSupport = ["RHS_AH64D_wd"];
+OT_NATO_Vehicles_AirSupport_Small = ["RHS_MELB_AH6M"];
+OT_NATO_Vehicles_GroundSupport = ["rhsusf_m1025_w_mk19","rhsusf_m1025_w_m2"];
+OT_NATO_Vehicles_TankSupport = ["rhsusf_m1a2sep1tuskiiwd_usarmy","rhsusf_m1a2sep1wd_usarmy"];
+OT_NATO_Vehicles_Convoy = ["B_T_UGV_01_rcws_olive_F","rhsusf_m1025_w_m2","rhsusf_m1025_w_m2","rhsusf_m1025_w_m2","rhsusf_m1025_w_mk19"];
+OT_NATO_Vehicles_AirWingedSupport = ["RHS_A10"];
+OT_NATO_Vehicle_AirTransport_Small = "RHS_MELB_MH6M";
+OT_NATO_Vehicle_AirTransport = ["RHS_CH_47F","RHS_MELB_MH6M","RHS_MELB_MH6M"];
+OT_NATO_Vehicle_AirTransport_Large = "RHS_CH_47F";
 OT_NATO_Vehicle_Boat_Small = "B_T_Boat_Armed_01_minigun_F";
-OT_NATO_Vehicles_APC = ["B_T_APC_Wheeled_01_cannon_F"];
+OT_NATO_Vehicles_APC = ["RHS_M2A3_wd"];
 
 OT_NATO_Sandbag_Curved = "Land_BagFence_01_round_green_F";
 OT_NATO_Barrier_Small = "Land_HBarrier_01_line_5_green_F";
 OT_NATO_Barrier_Large = "Land_HBarrier_01_wall_6_green_F";
 
-OT_NATO_Mortar = "B_T_Mortar_01_F";
+OT_NATO_Mortar = "RHS_M252_WD";
 
-OT_NATO_Vehicle_HVT = "B_MRAP_01_F";
+OT_NATO_Vehicle_HVT = "rhsusf_m998_w_4dr_fulltop";
 
-OT_NATO_Vehicle_CTRGTransport = "B_CTRG_Heli_Transport_01_tropic_F";
+OT_NATO_Vehicle_CTRGTransport = "RHS_UH1Y";
 
 OT_NATO_weapons_Police = [];
 OT_NATO_weapons_Pistols = ["hgun_Pistol_heavy_01_F","hgun_ACPC2_F","hgun_P07_F","hgun_Rook40_F"];

@@ -39,6 +39,7 @@ OT_priceData = [
 ['ACE_DAGR',[120,0,0,2]],
 ['ACE_Cellphone',[50,0,0,1]],
 ['V_RebreatherIA',[75,0,0,1]],
+['adv_aceSplint_splint',[10,0,0,1]],
 
 //New v0.7.8.0
 ['ACE_tourniquet',[15,0,0,0.1]],
