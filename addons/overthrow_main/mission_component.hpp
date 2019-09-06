@@ -64,7 +64,7 @@ class Params {
 		title = "Fast Travel Rules (Only with autoload)";
 		values[] = {0, 1, 2};
 		texts[] = {"Open", "No Weapons", "Restricted"};
-		default = 1;
+		default = 2;
 	};
 	class ot_showplayermarkers {
 		title = "Show Player Markers on HUD";
@@ -83,7 +83,7 @@ class Params {
         ACE_setting = 1;
         values[] = {1, 2};
         texts[] = {"Basic", "Advanced"};
-        default = 1;
+        default = 2;
     };
     class ace_medical_blood_enabledFor {
         title = "ACE Blood";
