@@ -118,8 +118,8 @@ OT_NATO_StaticGarrison_LevelThree = ["RHS_Stinger_AA_pod_WD","RHS_Stinger_AA_pod
 
 OT_NATO_CommTowers = ["Land_TTowerBig_1_F","Land_TTowerBig_2_F"];
 
-OT_NATO_Unit_Sniper = "rhsusf_army_ucp_sniper";
-OT_NATO_Unit_Spotter = "rhsusf_army_ucp_jfo";
+OT_NATO_Unit_Sniper = "rhsusf_socom_marsoc_sniper_m107";
+OT_NATO_Unit_Spotter = "rhsusf_socom_marsoc_spotter";
 OT_NATO_Unit_AA_spec = "rhsusf_army_ucp_aa";
 OT_NATO_Unit_AA_ass = "rhsusf_army_ucp_riflemanl";
 OT_NATO_Unit_HVT = "rhsusf_army_ucp_driver";
@@ -145,7 +145,7 @@ OT_NATO_Vehicles_AirWingedSupport = ["RHS_A10"];
 OT_NATO_Vehicle_AirTransport_Small = "RHS_MELB_MH6M";
 OT_NATO_Vehicle_AirTransport = ["RHS_CH_47F","RHS_MELB_MH6M","RHS_MELB_MH6M"];
 OT_NATO_Vehicle_AirTransport_Large = "RHS_CH_47F";
-OT_NATO_Vehicle_Boat_Small = "B_T_Boat_Armed_01_minigun_F";
+OT_NATO_Vehicle_Boat_Small = "B_Boat_Armed_01_minigun_F";
 OT_NATO_Vehicles_APC = ["RHS_M2A3_wd"];
 
 OT_NATO_Sandbag_Curved = "Land_BagFence_01_round_green_F";

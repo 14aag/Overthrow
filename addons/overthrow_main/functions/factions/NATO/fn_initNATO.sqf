@@ -2,17 +2,6 @@ if (!isServer) exitwith {};
 OT_NATO_GroundForces = [];
 OT_NATO_Group_Recon = "";
 OT_NATO_Group_Engineers = "";
-{
-	private _name = configName _x;
-	if((_name find "Recon") > -1) then {
-		OT_NATO_Group_Recon = _name;
-		OT_NATO_Group_Engineers = _name;
-	};
-	private _numtroops = count("true" configClasses _x);
-	if(_numtroops > 5) then {
-		OT_NATO_GroundForces pushback _name;
-	};
-}foreach("true" configClasses (configFile >> "CfgGroups" >> "West" >> OT_faction_NATO >> "Infantry"));
 
 {
 	private _name = configName _x;
@@ -21,83 +10,68 @@ OT_NATO_Group_Engineers = "";
 	};
 }foreach("true" configClasses (configFile >> "CfgGroups" >> "West" >> OT_faction_NATO >> "Support"));
 
-OT_NATO_Units_LevelOne = [];
-OT_NATO_Units_LevelTwo = [];
-OT_NATO_Units_CTRGSupport = [];
+OT_NATO_Unit_TeamLeader = "rhsusf_army_ocp_teamleader";
+OT_NATO_Unit_SquadLeader = "rhsusf_army_ocp_squadleader";
+OT_NATO_Units_LevelOne = ["rhsusf_army_ocp_rifleman",
+"rhsusf_army_ocp_rifleman_m4",
+"rhsusf_army_ocp_autorifleman",
+"rhsusf_army_ocp_medic",
+"rhsusf_army_ocp_riflemanat",
+"rhsusf_army_ocp_grenadier",
+"rhsusf_army_ocp_rifleman_m16",
+"rhsusf_army_ocp_maaws"
+];
 
-(OT_loadingMessages call BIS_fnc_selectRandom) remoteExec['OT_fnc_notifyStart',0,false];
+OT_NATO_Units_LevelTwo = ["rhsusf_usmc_recon_marpat_d_marksman_fast",
+"rhsusf_usmc_recon_marpat_d_autorifleman_fast",
+"rhsusf_socom_marsoc_cso_mk17",
+"rhsusf_usmc_recon_marpat_d_sniper_M107",
+"rhsusf_usmc_lar_marpat_d_autorifleman",
+"rhsusf_usmc_lar_marpat_d_grenadier_m32",
+"rhsusf_usmc_lar_marpat_d_marksman",
+"rhsusf_usmc_marpat_d_smaw",
+"rhsusf_army_ocp_engineer",
+"rhsusf_army_ocp_jfo",
+"rhsusf_army_ocp_machinegunner",
+"rhsusf_army_ocp_machinegunnera",
+"rhsusf_army_ocp_marksman",
+"rhsusf_army_ocp_explosives",
+"rhsusf_army_ocp_sniper_m24sws",
+"rhsusf_army_ocp_aa",
+"rhsusf_army_ocp_javelin",
+"rhsusf_army_ocp_javelin_assistant"
+];
 
-private _c = 0;
+OT_NATO_Units_CTRGSupport = ["rhsusf_socom_marsoc_cso",
+"rhsusf_socom_marsoc_cso_breacher",
+"rhsusf_socom_marsoc_cso_mk17",
+"rhsusf_socom_marsoc_sarc",
+"rhsusf_socom_marsoc_marksman",
+"rhsusf_socom_marsoc_jtac",
+"rhsusf_socom_marsoc_elementleader",
+"rhsusf_socom_marsoc_cso_grenadier",
+"rhsusf_infantry_socom_armysf_rifleman",
+"rhsusf_army_ocp_javelin",
+"rhsusf_army_ocp_javelin_assistant",
+"rhsusf_army_ocp_aa"
+];
+OT_NATO_Unit_Sniper = "rhsusf_army_ocp_sniper";
+OT_NATO_Unit_Spotter = "rhsusf_army_ocp_marksman";
+OT_NATO_Unit_AA_spec = "rhsusf_army_ocp_aa";
+OT_NATO_Unit_AA_ass = "rhsusf_army_ocp_machinegunnera";
+OT_NATO_Unit_HVT = "rhsusf_army_ocp_officer";
 
+/*
 {
 	private _name = configName _x;
-	private _unitCfg = _x;
-	if(!(_name isEqualTo OT_NATO_Unit_Police) && !(_name isEqualTo OT_NATO_Unit_PoliceCommander)) then {
-		[_name] call {
-			params ["_name"];
-			if((_name find "_TL_") > -1) exitWith {
-				OT_NATO_Unit_TeamLeader = _name;
-			};
-			if((_name find "_SL_") > -1) exitWith {
-				OT_NATO_Unit_SquadLeader = _name;
-			};
-			if((_name find "_Officer_") > -1 || (_name find "_officer_") > -1) exitWith {
-				OT_NATO_Unit_HVT = _name
-			};
-			if((_name find "_CTRG_") > -1) exitWith {
-				OT_NATO_Units_CTRGSupport pushback _name
-			};
-			if(
-				(_name find "_Recon_") > -1
-				|| (_name find "_recon_") > -1
-				|| (_name find "_story_") > -1
-				|| (_name find "_Story_") > -1
-				|| (_name find "_lite_") > -1
-				|| (_name find "_HeavyGunner_") > -1
-			) exitWith {};
-
-			private _role = getText (_x >> "role");
-			if(_role in ["MachineGunner","Rifleman","CombatLifeSaver"]) then {OT_NATO_Units_LevelOne pushback _name};
-			if(_role in ["Grenadier","MissileSpecialist","Marksman"]) then {OT_NATO_Units_LevelTwo pushback _name};
-			if(_role == "Marksman" && (_name find "Sniper") > -1) then {OT_NATO_Unit_Sniper = _name};
-			if(_role == "Marksman" && (_name find "Spotter") > -1) then {OT_NATO_Unit_Spotter = _name};
-			if(_role == "MissileSpecialist" && (_name find "_AA_") > -1) then {OT_NATO_Unit_AA_spec = _name};
-
-			//Generate and cache alternative loadouts for this unit
-			private _loadout = getUnitLoadout _unitCfg;
-			private _loadouts = [];
-			for "_i" from 1 to 5 do {
-				_loadouts pushback ([_loadout] call OT_fnc_randomizeLoadout);
-			};
-			spawner setVariable [format["loadouts_%1",_name],_loadouts,false];
-			_c = _c + 1;
-			if(_c isEqualTo 10) then {
-				sleep 0.1;
-				_c = 0;
-			};
-		};
+	private ["_unit"];
+	if(_name isKindOf "SoldierWB") then {
+		private _unit = _this select 0;
+		_unit addItem OT_rations call BIS_fnc_selectRandom;
+		_unit addItem "ACE_Canteen";
 	};
-}foreach(format["(getNumber(_x >> 'scope') isEqualTo 2) && (getText(_x >> 'faction') isEqualTo '%1') && (configName _x) isKindOf 'SoldierWB'",OT_faction_NATO] configClasses (configFile >> "CfgVehicles"));
-
-(OT_loadingMessages call BIS_fnc_selectRandom) remoteExec['OT_fnc_notifyStart',0,false];
-
-//Generate and cache gendarm loadouts
-private _loadout = getUnitLoadout OT_NATO_Unit_Police;
-private _loadouts = [];
-for "_i" from 1 to 5 do {
-	_loadouts pushback ([_loadout,OT_allBLUSMG] call OT_fnc_randomizeLoadout);
-};
-spawner setVariable [format["loadouts_%1",OT_NATO_Unit_Police],_loadouts,false];
-
-private _loadout = getUnitLoadout OT_NATO_Unit_PoliceCommander;
-private _loadouts = [];
-for "_i" from 1 to 5 do {
-	_loadouts pushback ([_loadout,OT_allBLUSMG] call OT_fnc_randomizeLoadout);
-};
-spawner setVariable [format["loadouts_%1",OT_NATO_Unit_PoliceCommander],_loadouts,false];
-
-
-OT_NATO_Units_LevelTwo = OT_NATO_Units_LevelOne + OT_NATO_Units_LevelTwo;
+}foreach(format["(getNumber(_x >> 'scope') isEqualTo 2) && (getText(_x >> 'faction') isEqualTo '%1')",OT_faction_NATO] configClasses (configFile >> "CfgVehicles"));
+*/
 
 OT_NATOobjectives = [];
 OT_NATOcomms = [];
@@ -140,7 +114,6 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["NATOvers
 	private _numHVTs = 6;
 	if(_diff == 0) then {_numHVTs = 4};
 	if(_diff == 2) then {_numHVTs = 8};
-
 	//Find military objectives
 	_groundvehs = OT_allBLUOffensiveVehicles select {!((_x isKindOf "Air") || (_x isKindOf "Tank") || (_x isKindOf "Ship"))};
 	{
@@ -169,7 +142,7 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["NATOvers
 
 			if(_name isEqualTo OT_NATO_HQ) then {
 				_garrison = 48;
-				server setVariable [format ["vehgarrison%1",_name],["B_T_APC_Tracked_01_AA_F","B_T_APC_Tracked_01_AA_F","B_GMG_01_high_F","B_GMG_01_high_F","B_GMG_01_high_F","B_HMG_01_high_F","B_HMG_01_high_F","B_HMG_01_high_F"],true];
+				server setVariable [format ["vehgarrison%1",_name],["RHS_M6_wd"," RHS_M6_wd","RHS_M2StaticMG_D","RHS_M2StaticMG_D","RHS_M2StaticMG_D","RHS_M2StaticMG_D","RHS_M2StaticMG_D","RHS_M2StaticMG_D"],true];
 				_garr = [];
 				{
 					_x params ["_class","_num"];
