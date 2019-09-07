@@ -13,7 +13,7 @@ OT_economyVersion = 13;
 OT_NATOversion = 10;
 OT_CRIMversion = 1;
 
-OT_faction_NATO = "rhs_faction_usarmy_wd";
+OT_faction_NATO = "BLU_T_F";
 OT_spawnFaction = "IND_F"; //This faction will have a rep in spawn town
 
 OT_flag_NATO = "Flag_NATO_F";
